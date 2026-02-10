@@ -8,13 +8,26 @@ import { Workspace } from "polotno/canvas/workspace";
 
 import "@blueprintjs/core/lib/css/blueprint.css";
 import { createStore } from "polotno/model/store";
+// ===== SIGN SIZE SETTINGS =====
+const DPI = 300;
+
+const inches = (wIn, hIn) => ({
+  width: Math.round(wIn * DPI),
+  height: Math.round(hIn * DPI),
+});
+
+const PRESETS = {
+  yard_24x18: inches(24, 18),
+  banner_48x24: inches(48, 24),
+};
 
 const store = createStore({
   key: "demo",
   showCredit: true,
 });
 
-store.addPage(); // <-- IMPORTANT: without a page you can get a blank workspace
+store.addPage(PRESETS.yard_24x18);
+ // <-- IMPORTANT: without a page you can get a blank workspace
 
 export default function App() {
   return (
